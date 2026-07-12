@@ -3,6 +3,8 @@
 <head>
   <base target="_top">
   <title>ระบบฐานข้อมูลเอกสารรายวิชา | คณะวารสารศาสตร์และสื่อสารมวลชน</title>
+  <!-- 🟢 เพิ่มโค้ดบรรทัดนี้ลงไปเพื่อให้ Responsive ทำงาน 🟢 -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <link rel="icon" href="https://quota.jc.tu.ac.th/images/jc_logo.png" type="image/png">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
   <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
@@ -65,6 +67,61 @@
       color: #5a2d6b;
       text-decoration: underline;
     }
+    /* ------------------------------------------------ */
+    /* ส่วนตั้งค่า Responsive Design สำหรับหน้าจอขนาดต่างๆ */
+    /* ------------------------------------------------ */
+
+    /* สำหรับแท็บเล็ตและหน้าจอมือถือ (ขนาดหน้าจอไม่เกิน 768px) */
+    @media (max-width: 768px) {
+      /* ปรับขนาดตัวอักษรและโลโก้ใน Navbar */
+      .brand-logo { width: 35px; }
+      .brand-text h4 { font-size: 1rem; }
+      .brand-text small { font-size: 0.75rem; }
+      
+      /* ปรับขนาดไอคอนและหัวข้อในส่วนเนื้อหาหลัก */
+      .fa-folder-open { font-size: 3rem !important; }
+      main h2 { font-size: 1.5rem; }
+      main p.fs-5 { font-size: 1rem !important; }
+      
+      /* ปรับระยะห่าง (Padding) ของการ์ดให้พอดีขึ้น */
+      .card { padding: 30px 20px !important; }
+      
+      /* ปรับขนาดปุ่มเข้าสู่ระบบ */
+      #login-btn { 
+        padding: 12px 30px !important; 
+        font-size: 1.1rem; 
+        width: 100%; /* ให้ปุ่มกว้างเต็มกรอบบนมือถือ */
+      }
+    }
+
+    /* สำหรับหน้าจอมือถือขนาดเล็ก (ขนาดหน้าจอไม่เกิน 480px) */
+    @media (max-width: 480px) {
+      /* เพิ่มความสูง (Padding) ให้ Navbar ดูใหญ่ขึ้นบนมือถือ */
+      .navbar {
+        padding-top: 15px !important;
+        padding-bottom: 15px !important;
+      }
+
+      /* ย่อขนาดโลโก้ */
+      .brand-logo { width: 30px; }
+      
+      /* ปรับขนาดข้อความให้เล็กลงพอดีกับหน้าจอ */
+      .brand-text h4 { font-size: 0.9rem; }
+      
+      /* ลบ display: none ออก แล้วปรับขนาด Font แทน */
+      .brand-text small { 
+        display: block; /* สั่งให้แสดงผลและขึ้นบรรทัดใหม่ตามธรรมชาติ */
+        font-size: 0.65rem; /* ลดขนาดลงเพื่อไม่ให้ล้นจอ */
+        line-height: 1.2;
+      }
+      
+      /* ปรับขนาดข้อความในกล่องอธิบาย */
+      .alert-box, .text-start { padding: 15px !important; }
+      ul.small { padding-left: 1.2rem; }
+      
+      /* ปรับขนาดข้อความ Footer */
+      footer p { font-size: 0.8rem !important; }
+    }
   </style>
 </head>
 
@@ -73,16 +130,16 @@
     <div class="container-fluid px-3 px-lg-4"> 
       <a class="brand-container me-auto" href="#">
         <img src="https://quota.jc.tu.ac.th/images/jc_logo.png" alt="JC Logo" class="brand-logo">
-        <div class="brand-text"><h4>ระบบฐานข้อมูลเอกสารรายวิชา</h4><small>คณะวารสารศาสตร์และสื่อสารมวลชน</small></div>
+        <div class="brand-text">
+          <h4>ระบบฐานข้อมูลเอกสารรายวิชา</h4>
+          <small>คณะวารสารศาสตร์และสื่อสารมวลชน</small>
+        </div>
       </a>
-      <button class="navbar-toggler border-0 ms-auto position-relative" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav">
-        <span class="navbar-toggler-icon"></span>
-      </button>
       
     </div>
   </nav>
 
-  <main class="container flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center my-5">
+  <main class="container flex-grow-1 d-flex flex-column justify-content-center align-items-center text-center mt-3 mb-5">
     <div class="card shadow-sm border-0 rounded-4 p-4 p-md-5 w-100" style="max-width: 800px; background-color: #ffffff;">
       
       <!-- ไอคอนและหัวข้อ -->
@@ -91,7 +148,7 @@
       
       <p class="text-secondary mb-4 fs-5">
         ยินดีต้อนรับคณาจารย์เข้าสู่ระบบฐานข้อมูลเอกสารรายวิชา คณะวารสารศาสตร์และสื่อสารมวลชน 
-        ระบบนี้จัดทำขึ้นเพื่ออำนวยความสะดวกในการจัดเก็บ ค้นหา และบริหารจัดการไฟล์เอกสารอย่างเป็นระบบ
+        ระบบนี้จัดทำขึ้นเพื่ออำนวยความสะดวกในการจัดเก็บ ค้นหา และบริหารจัดการไฟล์เอกสารอย่างเป็นระบบ และใช้ประกอบการตรวจประเมินและรับรองมาตรฐานหลักสูตร
       </p>
       
       <!-- กล่องอธิบายรายละเอียดระบบ -->
